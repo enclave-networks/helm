@@ -32,9 +32,10 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext:
+  privileged: true
   capabilities:
-    drop:
-    - ALL
+  #  drop:
+  #  - ALL
     add:
     - NET_ADMIN
   # readOnlyRootFilesystem: true

@@ -34,23 +34,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          - name: "ENCLAVE_ENROLMENT_KEY"
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-options
-                key:  enrolmentKey
-#          ports:
-#            - name: http
-#              containerPort: 80
-#              protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
+            {{- if .Values.enclave.enrolmentKey }}
+            - name: "ENCLAVE_ENROLMENT_KEY"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-options
+                  key:  enrolmentKey
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

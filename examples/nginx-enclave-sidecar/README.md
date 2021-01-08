@@ -6,6 +6,8 @@ Note that this pod is not exposed for ingress traffic.
 
 ## Pod management
 
+Set a valid `ENCLAVE_ENROLMENT_KEY` environment variable in your `pod.yaml` file and apply to your cluster.
+
 ```
 $ kubectl apply -f pod.yaml
 $ kubectl delete -f pod.yaml

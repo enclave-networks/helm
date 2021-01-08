@@ -21,7 +21,7 @@ spec:
         image: enclavenetworks/enclave:latest
         env:
           - name: "ENCLAVE_ENROLMENT_KEY"
-            value: "4WPLF-4L6T9-FYCR2-9D342-K85TT"
+            value: "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX"
         securityContext:
           capabilities:
             add: ['NET_ADMIN']

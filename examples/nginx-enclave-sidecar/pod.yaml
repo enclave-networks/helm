@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-with-sidecar-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-with-sidecar
+  template:
+    metadata:
+      labels:
+        app: pod-with-sidecar
+    spec:
+      containers:
+      - name: app-container
+        image: nginx:1.7.9
+        ports:
+          - containerPort: 80
+      - name: sidecar-container
+        image: enclavenetworks/enclave:latest
+        env:
+          - name: "ENCLAVE_ENROLMENT_KEY"
+            value: "4WPLF-4L6T9-FYCR2-9D342-K85TT"
+        securityContext:
+          capabilities:
+            add: ['NET_ADMIN']
+        volumeMounts:
+          - name: tun
+            mountPath: /dev/net/tun
+      volumes:
+        - name: tun
+          hostPath:
+            type: 'CharDevice'
+            path: /dev/net/tun

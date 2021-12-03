@@ -13,9 +13,9 @@ $ kubectl apply -f deployment.yaml
 $ kubectl delete -f deployment.yaml
 ```
 
-## Enclave connectivity
+## Sidecar
 
-Until enclave supports auto-join keys, connect a terminal to the sidecar and run `enclave` to control connectivity.
+Using kubectl you can drop into a specific pod with a bash shell to maniulate the `enclave` agent inside that container if necessary.
 
 ```
 kubectl exec --stdin --tty pod-with-sidecar-deployment-7cc5c988-gnrpz -c sidecar-container -- /bin/bash
